@@ -2,6 +2,8 @@ package com.example.transitiondemo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.transition.Fade
+import android.transition.Slide
 import android.transition.TransitionInflater
 
 class DetailActivity : AppCompatActivity() {
@@ -10,12 +12,23 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
-        setupTransitionViaResource()
+        // setupTransitionViaResource()
+        setupTransitionProgrammatically()
     }
 
     private fun setupTransitionViaResource() {
         val transition = TransitionInflater.from(this)
             .inflateTransition(R.transition.activity_fade)
         window.enterTransition = transition
+    }
+
+    private fun setupTransitionProgrammatically() {
+        val fade = Fade()
+        fade.duration = 500
+        window.enterTransition = fade
+
+        val slide = Slide()
+        slide.duration = 500
+        window.returnTransition = slide
     }
 }
