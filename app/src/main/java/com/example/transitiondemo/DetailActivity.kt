@@ -1,15 +1,19 @@
 package com.example.transitiondemo
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.transition.Fade
 import android.transition.Slide
 import android.transition.TransitionInflater
+import android.view.Window
+import androidx.appcompat.app.AppCompatActivity
 
 class DetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        window.requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
+        window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)
         setContentView(R.layout.activity_detail)
 
         // setupTransitionViaResource()
@@ -18,7 +22,7 @@ class DetailActivity : AppCompatActivity() {
 
     private fun setupTransitionViaResource() {
         val transition = TransitionInflater.from(this)
-            .inflateTransition(R.transition.activity_fade)
+            .inflateTransition(R.transition.fade)
         window.enterTransition = transition
     }
 
